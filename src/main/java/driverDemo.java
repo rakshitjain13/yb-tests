@@ -20,7 +20,7 @@ public class driverDemo {
             int count = 100;
             PreparedStatement pstmt = conn.prepareStatement("select * from pkey_hash_point_lookup_tbl_128_par_1 where col_varchar_id_1='1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';");
             org.postgresql.PGStatement ps = (org.postgresql.PGStatement)pstmt;
-            ps.setPrepareThreshold(50);
+            ps.setPrepareThreshold(101);
             for (int i = 0; i < count; i++) {
                 ResultSet rs = pstmt.executeQuery();
                 boolean usingServerPrepare = ps.isUseServerPrepare();
