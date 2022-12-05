@@ -13,5 +13,10 @@
         <property name="hibernate.connection.isolation">8</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="javax.persistence.create-database-schemas">true</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/orm_demo</property>
+        <property name="hibernate.connection.username">yugabyte</property>
+        <property name="hibernate.connection.password">yugabyte</property>
+        <mapping class="Employee"/>
     </session-factory>
+
 </hibernate-configuration>
