@@ -9,7 +9,7 @@ public class driverDemo {
             System.out.println(classpath);
             System.out.println("Could not load driver");
         }
-        String jdbcConnectionUrl = "jdbc:postgresql://sgupta-pg-i-westc-validate.cbtcvpszcgdq.us-west-2.rds.amazonaws.com:5432/postgres?sslmode=require&preferQueryMode=simple&prepareThreshold=0";
+        String jdbcConnectionUrl = "jdbc:postgresql://sgupta-pg-i-westc-validate.cbtcvpszcgdq.us-west-2.rds.amazonaws.com:5432/postgres?sslmode=require&preferQueryMode=simple";
         String user = "postgres";
         String password = "Password321";
         Connection conn = DriverManager.getConnection(jdbcConnectionUrl, user, password);
@@ -18,13 +18,15 @@ public class driverDemo {
 
 
             int count = 100;
+            PreparedStatement pstmt = conn.prepareStatement("select * from pkey_hash_point_lookup_tbl_128_par_1 where col_varchar_id_1='1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';");
+            org.postgresql.PGStatement pgstmt = pstmt.unwrap(org.postgresql.PGStatement.class);
+            pgstmt.setPrepareThreshold(0);
             for (int i = 0; i < count; i++) {
-
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("select * from pkey_hash_point_lookup_tbl_128_par_1 where col_varchar_id_1='1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';");
+                ResultSet rs = pstmt.executeQuery();
                 while (rs.next()) {
                     System.out.println(rs.getString(1));
                 }
+                rs.close();
             }
 
         } catch (SQLException e) {
