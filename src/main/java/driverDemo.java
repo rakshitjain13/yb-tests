@@ -9,7 +9,7 @@ public class driverDemo {
             System.out.println(classpath);
             System.out.println("Could not load driver");
         }
-        String jdbcConnectionUrl = "jdbc:postgresql://sgupta-pg-i-westc-validate.cbtcvpszcgdq.us-west-2.rds.amazonaws.com:5432/postgres?sslmode=require&preferQueryMode=simple";
+        String jdbcConnectionUrl = "jdbc:postgresql://sgupta-pg-i-westc-validate.cbtcvpszcgdq.us-west-2.rds.amazonaws.com:5432/postgres?sslmode=require";
         String user = "postgres";
         String password = "Password321";
         Connection conn = DriverManager.getConnection(jdbcConnectionUrl, user, password);
@@ -24,11 +24,11 @@ public class driverDemo {
             for (int i = 0; i < count; i++) {
                 ResultSet rs = pstmt.executeQuery();
                 boolean usingServerPrepare = ps.isUseServerPrepare();
-                double start = System.currentTimeMillis();
+                double start = System.nanoTime();
                 while (rs.next()) {
                     System.out.println(usingServerPrepare);
                 }
-                double end = System.currentTimeMillis();
+                double end = System.nanoTime();
                 System.out.println(end-start);
                 rs.close();
             }
