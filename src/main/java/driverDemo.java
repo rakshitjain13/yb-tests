@@ -17,16 +17,19 @@ public class driverDemo {
             System.out.println("Connected to the PostgreSQL server successfully.");
 
 
-            int count = 4;
+            int count = 10;
             PreparedStatement pstmt = conn.prepareStatement("select * from pkey_hash_point_lookup_tbl_128_par_1 where col_varchar_id_1='1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';");
             org.postgresql.PGStatement ps = (org.postgresql.PGStatement)pstmt;
 //            ps.setPrepareThreshold(101);
             for (int i = 0; i < count; i++) {
                 ResultSet rs = pstmt.executeQuery();
                 boolean usingServerPrepare = ps.isUseServerPrepare();
+                double start = System.currentTimeMillis();
                 while (rs.next()) {
                     System.out.println(usingServerPrepare);
                 }
+                double end = System.currentTimeMillis();
+                System.out.println(end-start);
                 rs.close();
             }
 
