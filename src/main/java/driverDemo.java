@@ -9,7 +9,7 @@ public class driverDemo {
             System.out.println(classpath);
             System.out.println("Could not load driver");
         }
-        String jdbcConnectionUrl = "jdbc:postgresql://sgupta-pg-i-westc-validate.cbtcvpszcgdq.us-west-2.rds.amazonaws.com:5432/postgres?sslmode=require";
+        String jdbcConnectionUrl = "jdbc:postgresql://sgupta-pg-i-westc-validate.cbtcvpszcgdq.us-west-2.rds.amazonaws.com:5432/postgres?sslmode=require&prepareThreshold=0";
         String user = "postgres";
         String password = "Password321";
         Connection conn = DriverManager.getConnection(jdbcConnectionUrl, user, password);
@@ -20,7 +20,7 @@ public class driverDemo {
             int count = 100;
             PreparedStatement pstmt = conn.prepareStatement("select * from pkey_hash_point_lookup_tbl_128_par_1 where col_varchar_id_1='1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';");
             org.postgresql.PGStatement ps = (org.postgresql.PGStatement)pstmt;
-            ps.setPrepareThreshold(0);
+//            ps.setPrepareThreshold(0);
             for (int i = 0; i < count; i++) {
                 ResultSet rs = pstmt.executeQuery();
                 boolean usingServerPrepare = ps.isUseServerPrepare();
