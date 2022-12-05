@@ -23,8 +23,9 @@ public class driverDemo {
             pgstmt.setPrepareThreshold(0);
             for (int i = 0; i < count; i++) {
                 ResultSet rs = pstmt.executeQuery();
+                boolean usingServerPrepare = pgstmt.isUseServerPrepare();
                 while (rs.next()) {
-                    System.out.println(rs.getString(1));
+                    System.out.println(rs.getString(1)+usingServerPrepare);
                 }
                 rs.close();
             }
