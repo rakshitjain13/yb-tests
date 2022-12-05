@@ -9,7 +9,7 @@ public class driverDemo {
             System.out.println(classpath);
             System.out.println("Could not load driver");
         }
-        String jdbcConnectionUrl = "jdbc:postgresql://sgupta-pg-i-westc-validate.cbtcvpszcgdq.us-west-2.rds.amazonaws.com:5432/postgres?sslmode=require&prepareThreshold=0&preparedStatementCacheQueries=0&preparedStatementCacheSizeMiB=0";
+        String jdbcConnectionUrl = "jdbc:postgresql://sgupta-pg-i-westc-validate.cbtcvpszcgdq.us-west-2.rds.amazonaws.com:5432/postgres?sslmode=require&prepareThreshold=5&preparedStatementCacheQueries=0&preparedStatementCacheSizeMiB=0";
         String user = "postgres";
         String password = "Password321";
         Connection conn = DriverManager.getConnection(jdbcConnectionUrl, user, password);
